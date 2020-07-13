@@ -9,13 +9,18 @@
 import SwiftUI
 
 struct MemoListScene: View {
+
+  
     var body: some View {
-        Text("Hello, World!")
+      List(store.list) { memo in
+        Text(memo.content)
+      }
     }
 }
 
 struct MemoListScene_Previews: PreviewProvider {
     static var previews: some View {
         MemoListScene()
+      .environmetObject(MemoStore())
     }
 }
