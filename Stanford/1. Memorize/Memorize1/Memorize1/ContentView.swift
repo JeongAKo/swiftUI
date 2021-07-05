@@ -9,8 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    Text("Hello, world!~!~!")
-      .padding()
+    ZStack {
+      RoundedRectangle(cornerRadius: 20)
+        .stroke(lineWidth: 3)
+        .padding(.horizontal)
+      
+      Text("Green").foregroundColor(.green)
+    }
+    .foregroundColor(.yellow)
+    .padding()
+    
+    
+    
   }
 }
 
@@ -41,6 +51,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    Group {
+      ContentView()
+        .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+    }
   }
 }
