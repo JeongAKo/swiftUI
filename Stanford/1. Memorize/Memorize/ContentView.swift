@@ -11,7 +11,8 @@ import SwiftUI
 struct ContentView: View {
   var viewModel: EmojiMemoryGame
   var body: some View {
-    //ForEach(iteratablething //like Array, Dict, tuple,,,ets something can return object )
+    //ForEach(iteratablething
+    //like Array, Dict, tuple,,,ets something can return object )
     HStack {
       ForEach(viewModel.cards) { card in
         CardView(card: card).onTapGesture {
@@ -21,7 +22,7 @@ struct ContentView: View {
     }
     
     .padding()
-    .foregroundColor(Color.orange)
+    .foregroundColor(Color.yellow)
     .font(Font.largeTitle)
      
   }
