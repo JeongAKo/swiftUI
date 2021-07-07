@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   var emojis: Array<String> = ["🥑","🧢", "😀","🍋","🐶","🚧","🧽", "🧤", "🎒", "🐨", "👀", "🍦", "🥜", "🍫", "🚕", "🗿", "💸", "🔫", "💣", "💊", "💙", "♻️", "🏳️‍🌈", "⛄️"]
-  @State var emojiCount: Int = 4
+  @State var emojiCount: Int = 24
   var body: some View {
     VStack {
       ScrollView{
@@ -25,7 +25,7 @@ struct ContentView: View {
       HStack {
         remove
         Spacer()
-        Text("Shuffle")
+//        Text("Shuffle")
         Spacer()
         add
       }

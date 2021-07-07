@@ -1,4 +1,4 @@
-## swiftUI
+##  swiftUI
 
 모든 애플 플랫폼방식을 지원(iOS, watchOS, macOS, tvOS)
 
@@ -52,7 +52,7 @@ Live Preview 버튼을 우클릭하면 Live Preview와 Debug Preview 중 선택�
 
 
 
-##### SwiftUI를 공부하면서 드는 생각은 Combine은 SwiftUI와 함께 써야 Apple이 Combine을 만든 의도를 살릴 수 있습니다
+##### SwiftUI와 Combine을 함께 써야 Apple이 Combine을 만든 의도를 살릴 수 있습니다
 
 
 
