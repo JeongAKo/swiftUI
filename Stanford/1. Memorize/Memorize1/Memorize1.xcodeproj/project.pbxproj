@@ -56,10 +56,10 @@
 		AB8990C82693495B008CD8F7 /* Memorize1 */ = {
 			isa = PBXGroup;
 			children = (
-				AB8990C92693495B008CD8F7 /* Memorize1App.swift */,
-				AB8990CB2693495B008CD8F7 /* ContentView.swift */,
 				AB6F880C26958485007F6503 /* MemoryGame.swift */,
 				AB9D133426958DE8004D0A01 /* EmojiMemoryGame.swift */,
+				AB8990CB2693495B008CD8F7 /* ContentView.swift */,
+				AB8990C92693495B008CD8F7 /* Memorize1App.swift */,
 				AB8990CD2693495D008CD8F7 /* Assets.xcassets */,
 				AB8990D22693495D008CD8F7 /* Info.plist */,
 				AB8990CF2693495D008CD8F7 /* Preview Content */,
