@@ -138,3 +138,38 @@ SwiftUI’s views should be structs, which means they are immutable by default. 
 
  `\.self` works for anything that conforms to `Hashable`
 
+
+
+
+
+## Lecture5
+
+#### GeometryReader
+
+A container view that defines its content as a function of its own size and coordinate space.
+
+기기에 상관없이 비율로 레이아웃 구성 가능
+
+~~~swift
+GeometryReader{ geometry in
+        HStack {
+          Text("0")
+            .font(.largeTitle)
+            .background(Color.red)
+            .frame(width: geometry.size.width/3)
+          Text("1")
+            .font(.largeTitle)
+            .background(Color.orange)
+            .frame(width: geometry.size.width/3)
+          Text("2")
+            .font(.largeTitle)
+            .background(Color.blue)
+            .frame(width: geometry.size.width/3)
+        }
+      }
+~~~
+
+
+
+
+

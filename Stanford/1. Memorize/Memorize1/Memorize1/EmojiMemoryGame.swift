@@ -8,12 +8,13 @@
 import SwiftUI
 
 
-// ViewModel
+// ViewModel bind View and Model (gate keeper)
 class EmojiMemoryGame: ObservableObject {
+  typealias Card = MemoryGame<String>.Card
   
-  static let emojis: Array<String> = ["🥑","🧢", "😀","🍋","🐶","🚧","🧽", "🧤", "🎒", "🐨", "👀", "🍦", "🥜", "🍫", "🚕", "🗿", "💸", "🔫", "💣", "💊", "💙", "♻️", "🏳️‍🌈", "⛄️"]
+  private static let emojis: Array<String> = ["🥑","🧢", "😀","🍋","🐶","🚧","🧽", "🧤", "🎒", "🐨", "👀", "🍦", "🥜", "🍫", "🚕", "🗿", "💸", "🔫", "💣", "💊", "💙", "♻️", "🏳️‍🌈", "⛄️"]
   
-  static func createMemoryGame() -> MemoryGame<String> {
+  private static func createMemoryGame() -> MemoryGame<String> {
     MemoryGame<String>(numberOfPairsCards: 8) { pairIndex in
       emojis[pairIndex]
     }
@@ -22,15 +23,15 @@ class EmojiMemoryGame: ObservableObject {
   
 //  private(set) var model: MemoryGame<String> = createMemoryGame()
   
-  @Published private var model: MemoryGame<String> = createMemoryGame()
+  @Published private var model = createMemoryGame()
 
-  var cards: Array<MemoryGame<String>.Card> {
+  var cards: Array<Card> {
     return model.cards
   }
   
   
   // MARK: - Intent(s)
-  func choose(_ card: MemoryGame<String>.Card) {
+  func choose(_ card: Card) {
     objectWillChange.send()
     model.choose(card)
   }
