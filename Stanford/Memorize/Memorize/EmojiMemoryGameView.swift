@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Memorize1
+//  Memorize
 //
 //  Created by 고정아 on 2021/07/05.
 //

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:HelloSwiftUI.xcodeproj">
+      location = "self:/Users/daisy/Desktop/gitRepos/swiftUI/Stanford/Memorize/Memorize.xcodeproj">
    </FileRef>
 </Workspace>
