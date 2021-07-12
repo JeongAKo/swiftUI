@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-  @State private var alertIsVisible: Bool = false
+  @State private var alertIsVisible = false
+  @State private var sliderValue = 50.0
+  @State private var game = Game()
   
   var body: some View {
       VStack{
@@ -19,7 +21,7 @@ struct ContentView: View {
           .lineSpacing(4.0)
           .font(.footnote)
          
-        Text("89")
+        Text(String(game.target))
           .kerning(-1.0)
           .fontWeight(.black)
           .font(.largeTitle)
@@ -27,19 +29,19 @@ struct ContentView: View {
           Text("1")
             .bold()
             .padding()
-          Slider(value: .constant(50), in: 1.0...100.0)
+          Slider(value: $sliderValue, in: 1.0...100.0)
           Text("100")
             .bold()
             .padding()
         }
         Button(action: {
-          self.alertIsVisible = true
-          print("🥁 \(alertIsVisible)")
+          alertIsVisible = true
         }) {
           Text("Hit me")
             .alert(isPresented: $alertIsVisible) {
+              let  rounedValue = Int(sliderValue.rounded())
               return Alert(title: Text("Hello there"),
-                           message: Text("This is my first pop-up"),
+                           message: Text("The slider vlaue is \(rounedValue). \n" + "Your scored \(game.points(sliderValue: rounedValue)) points is round."),
                            dismissButton: .default(Text("Awesome!")
                            )
               )
