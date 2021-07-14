@@ -17,8 +17,6 @@ class someClass{
 
 
 
-
-
 ##  @Binding
 
 $가 붙으면 값을 수정가능한 Binding타입을 참조
