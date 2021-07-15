@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InstructionTextView: View {
+struct InstructionText: View {
   var text: String
   
   var body: some View {    
@@ -56,14 +56,76 @@ struct LabelText: View {
   }
 }
 
+
+struct BodyText: View {
+  var text: String
+  
+  var body: some View {
+    Text(text)
+      .font(.subheadline)
+      .fontWeight(.semibold)
+      .multilineTextAlignment(.center)
+      .lineSpacing(12.0)
+  }
+}
+
+struct ButtonText: View {
+  var text: String
+  
+  var body: some View {
+    Text(text)
+      .bold()
+      .padding()
+      .frame(maxWidth: .infinity)
+      .background(
+        Color.accentColor
+      )
+      .foregroundColor(.white)
+      .cornerRadius(12.0 )
+  }
+}
+
+
+struct ScoreText: View {
+  var score: Int
+  
+  var body: some View {
+    Text(String(score))
+      .bold()
+      .kerning(-0.2)
+      .foregroundColor(Color("TextColor"))
+      .font(.title3)
+  }
+}
+
+
+struct DateText: View {
+  var date: Date
+  
+  var body: some View {
+    Text(date, style: .time)
+      .bold()
+      .kerning(-0.2)
+      .foregroundColor(Color("TextColor"))
+      .font(.title3)
+  }
+}
+
+
+
 struct TextView_Previews: PreviewProvider {
   static var previews: some View {
     VStack {
-      InstructionTextView(text: "Instruction")
+      InstructionText(text: "Instruction")
       BigNumberText(text: "999")
       SliderLableText(text: "99")
       LabelText(text: "9")
+      BodyText(text: "You scored 200 Points\n🎉🎉🎉")
+      ButtonText(text: "Start New Round")
+      ScoreText(score: 459)
+      DateText(date: Date())
     }
+        .padding()
   }
 }
 

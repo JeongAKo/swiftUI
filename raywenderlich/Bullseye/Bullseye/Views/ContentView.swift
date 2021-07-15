@@ -17,8 +17,22 @@ struct ContentView: View {
       BackgroundView(game: $game)
       VStack{
         InstructionView(game: $game)
+          .padding(.bottom, alertIsVisible ? 0 : 100)
+        
+        if alertIsVisible  {
+          PointsView(alertIsVisible: $alertIsVisible,
+                     sliderValue: $sliderValue,
+                     game: $game)
+            .transition(.scale)
+        } else {
+          HitMeButton(alertIsVisible: $alertIsVisible, sliderValue: $sliderValue, game: $game)
+            .transition(.scale)
+        }
+      }
+      
+      if !alertIsVisible {
         SliderView(sliderValue: $sliderValue)
-        HitMeButton(alertIsVisible: $alertIsVisible, sliderValue: $sliderValue, game: $game)
+          .transition(.scale)
       }
     }
   }
@@ -30,7 +44,7 @@ struct InstructionView: View {
   
   var body: some View {
     VStack {
-      InstructionTextView(text: "🎯🎯🎯\nPUT THE BULLSEYE AS CLOSE AS YOU CAN TO")
+      InstructionText(text: "🎯🎯🎯\nPUT THE BULLSEYE AS CLOSE AS YOU CAN TO")
         .padding(.leading, 30.0)
         .padding(.trailing, 30.0)
       BigNumberText(text: String(game.target))
@@ -59,7 +73,9 @@ struct HitMeButton: View {
   
   var body: some View {
     Button(action: {
-      alertIsVisible = true
+      withAnimation {
+        alertIsVisible = true
+      }
     }) {
       Text("Hit me".uppercased())
         .bold()
@@ -74,20 +90,11 @@ struct HitMeButton: View {
       
     )
     .foregroundColor(.white)
-    .cornerRadius(21)
+    .cornerRadius(Constants.General.roundRectViewCornerRadius)
     .overlay(
-      RoundedRectangle(cornerRadius: 21)
-        .strokeBorder(Color.white, lineWidth: 2.0)
+      RoundedRectangle(cornerRadius: Constants.General.roundRectViewCornerRadius)
+        .strokeBorder(Color.white, lineWidth: Constants.General.strokeWidth)
     )
-    .alert(isPresented: $alertIsVisible) {
-      let  rounedValue = Int(sliderValue.rounded())
-      return Alert(title: Text("Hello there"),
-                   message: Text("The slider vlaue is \(rounedValue). \n" + "Your scored \(game.points(sliderValue: rounedValue)) points is round."),
-                   dismissButton: .default(Text("Awesome!")
-                   )
-      )
-    }
-    
   }
 }
 
