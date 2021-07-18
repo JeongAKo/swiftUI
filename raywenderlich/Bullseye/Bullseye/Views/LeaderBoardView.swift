@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct LeaderBoardView: View {
+  @Binding var leaderBoardIsShowing: Bool
+  @Binding var game: Game
+  
   var body: some View {
-    RowView(index: 1, score: 10, date: Date())
+    ZStack {
+      Color("BackgroundColor")
+        .edgesIgnoringSafeArea(.all)
+      VStack(spacing: 10) {
+        HeaderView(leaderBoardIsShowing: $leaderBoardIsShowing)
+        LabelView()
+        ScrollView {
+          VStack(spacing: 10) {
+            ForEach(game.leaderboardEntries.indices) { i in
+              let leaderboardEntry = game.leaderboardEntries[i]
+              RowView(index: i, score: leaderboardEntry.score, date: leaderboardEntry.date)
+            }
+          }
+        }
+      }
+    }
   }
 }
-
 
 
 struct RowView: View {
@@ -41,13 +58,69 @@ struct RowView: View {
   }
 }
 
+struct HeaderView: View {
+  @Binding var leaderBoardIsShowing: Bool
+  @Environment(\.verticalSizeClass) var verticalSizeClass
+  @Environment(\.horizontalSizeClass) var HorizontalSizeClass
+  
+  
+  var body: some View {
+    ZStack {
+      HStack {
+        if verticalSizeClass == .regular && HorizontalSizeClass == .compact {
+          BigBoldText(text: "Leaderboard")
+            .padding(.leading)
+          Spacer()
+        } else {
+          BigBoldText(text: "Leaderboard")
+        }
+      }
+      .padding(.top)
+      HStack {
+        Spacer()
+        Button(action: {
+          leaderBoardIsShowing = false
+        }) {
+          RoundedImageViewFilled(systemName: "xmark")
+            .padding(.trailing)
+        }
+      }
+    }
+  }
+}
 
 
+struct LabelView: View {
+  var body: some View {
+    HStack {
+      Spacer()
+        .frame(width: Constants.General.roundedViewLength)
+      Spacer()
+      LabelText(text: "Score")
+        .frame(width: Constants.LeaderBoard.leaderboardScoreColWidth)
+      Spacer()
+      LabelText(text: "Date")
+        .frame(width: Constants.LeaderBoard.leaderDateColWidth)
+    }
+    .padding(.leading)
+    .padding(.trailing)
+    .frame(maxWidth: Constants.LeaderBoard.roundMaxRowWidth)
+  }
+}
 
 struct LeaderBoardView_Previews: PreviewProvider {
+  static private var leaderBoardIsShowing = Binding.constant(false)
+  static private var game =  Binding.constant(Game(loadTestData: true))
+  
+  
   static var previews: some View {
-    LeaderBoardView()
-    LeaderBoardView()
+    Group {
+      LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing, game: game)
+        .previewLayout(.fixed(width: 812, height: 375)) // 1
+        .environment(\.horizontalSizeClass, .compact) // 2
+        .environment(\.verticalSizeClass, .compact) // 3
+    }
+    LeaderBoardView(leaderBoardIsShowing: leaderBoardIsShowing, game: game)
       .preferredColorScheme(.dark)
   }
 }
