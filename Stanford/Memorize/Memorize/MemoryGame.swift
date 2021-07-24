@@ -63,12 +63,12 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
   struct Card: Identifiable {
     let id: Int
     let content: CardContent
-    var isFaceUp = true
+    var isFaceUp = false
     var isMatched = false
   }
 }
 
-
+ 
 extension Array {
   var oneAndOnly: Element? {
     if self.count == 1 {

@@ -25,8 +25,6 @@ $가 붙으면 값을 수정가능한 Binding타입을 참조
 
 
 
-
-
 ## @Environment
 
 특정 뷰에서 EnvironmentValues의 특정 요소를 읽어와 뷰 구성에 반영
