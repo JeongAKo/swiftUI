@@ -173,3 +173,9 @@ GeometryReader{ geometry in
 
 
 
+## Lecture8
+
+#### SwiftUI Transitions
+
+https://swiftui-lab.com/advanced-transitions/
+
